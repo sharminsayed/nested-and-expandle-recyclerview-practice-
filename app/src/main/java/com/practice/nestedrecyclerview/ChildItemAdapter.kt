@@ -1,12 +1,16 @@
 package com.practice.nestedrecyclerview
 
 import android.content.Context
+import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -43,7 +47,15 @@ internal constructor(private val context:Context,private val ChildItemList: List
         // the ImageViews because we have
         // provided the source for the images
         // in the layout file itself
-        childViewHolder.ChildItemTitle.text = childItem.childItemTitle
+        childViewHolder.delete.setOnClickListener {
+            childViewHolder.parent!!.removeView(it.parent as View)
+        }
+        childViewHolder.add.setOnClickListener {
+            val inflater =
+                it.context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val rowView: View = inflater.inflate(R.layout.feild, null)
+            childViewHolder.parent!!.addView(rowView, childViewHolder.parent!!.childCount - 1)
+        }
         childViewHolder.card.setOnClickListener {
             Toast.makeText(context, "card click", Toast.LENGTH_SHORT).show()
 
@@ -66,14 +78,18 @@ internal constructor(private val context:Context,private val ChildItemList: List
     // in the child RecyclerView
     inner class ChildViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        var ChildItemTitle: TextView
+        var parent: LinearLayout
         var card:CardView
+        var delete:Button
+        var add:Button
 
         init {
-            ChildItemTitle = itemView.findViewById(
-                R.id.child_item_title
+            parent = itemView.findViewById(
+                R.id.parenet_layout
             )
             card=itemView.findViewById(R.id.card)
+            delete=itemView.findViewById(R.id.onDelete)
+            add=itemView.findViewById(R.id.add_feild)
         }
     }
 }

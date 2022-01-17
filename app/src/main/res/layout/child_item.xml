@@ -8,45 +8,43 @@
         of the child RecyclerView -->
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp">
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <!--Image in the CardView-->
-            <!--Here we have already given
-                the source for the ImageView
-                and we will not assign it
-                in the Java code-->
-            <!--So all the ImageViews will
-                hold the same image-->
-            <ImageView
-                android:id="@+id/img_child_item"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="5dp"
-                />
-
+        <LinearLayout
+            android:id="@+id/parenet_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:orientation="horizontal">
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:layout_toEndOf="@id/img_child_item"
-                android:padding="12dp"
-                android:layout_below="@+id/img_child_item"
-                android:layout_alignParentStart="true"
-                android:orientation="vertical">
+                android:id="@+id/feild"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:inputType="phone" />
 
-                <!--Text in the CardView-->
-                <TextView
-                    android:id="@+id/child_item_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
+                <Button
+                    android:id="@+id/onDelete"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@android:drawable/ic_delete"
                     />
             </LinearLayout>
-        </RelativeLayout>
+            <Button
+                android:id="@+id/add_feild"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:text="Add Field"
+                android:textColor="@android:color/background_dark" />
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </FrameLayout>
